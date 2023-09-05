@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcymbxiyawafh"]
+
+[ext_resource type="Texture2D" uid="uid://c8twxqq63ukkc" path="res://images/fighter.png" id="1_atm6l"]
+[ext_resource type="Script" path="res://Player.gd" id="1_og163"]
+[ext_resource type="Script" path="res://player_input.gd" id="3_u23yv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpuni"]
+size = Vector2(30, 40)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_veoyy"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:player")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nk8w1"]
+properties/0/path = NodePath("../InputSynchronizer:direction")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+
+[node name="PlayerBase" type="PlayerBase"]
+position = Vector2(-95, 514.998)
+script = ExtResource("1_og163")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cpuni")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_atm6l")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_veoyy")
+
+[node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../MultiplayerSynchronizer")
+replication_config = SubResource("SceneReplicationConfig_nk8w1")
+script = ExtResource("3_u23yv")

@@ -1,0 +1,78 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++17",
+      "-fPIC",
+      "-Wwrite-strings",
+      "-m64",
+      "-march=x86-64",
+      "-O2",
+      "-fPIC",
+      "-DDEBUG_ENABLED",
+      "-DDEBUG_METHODS_ENABLED",
+      "-Igodot-cpp/gdextension",
+      "-Igodot-cpp/include",
+      "-Igodot-cpp/gen/include",
+      "-Isrc",
+      "-o",
+      "src/gdexample.os",
+      "src/gdexample.cpp"
+    ],
+    "directory": "/mnt/sda1/data/godot-projects/multiplayer-roguelike",
+    "file": "/mnt/sda1/data/godot-projects/multiplayer-roguelike/src/gdexample.cpp",
+    "output": "/mnt/sda1/data/godot-projects/multiplayer-roguelike/src/gdexample.os"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++17",
+      "-fPIC",
+      "-Wwrite-strings",
+      "-m64",
+      "-march=x86-64",
+      "-O2",
+      "-fPIC",
+      "-DDEBUG_ENABLED",
+      "-DDEBUG_METHODS_ENABLED",
+      "-Igodot-cpp/gdextension",
+      "-Igodot-cpp/include",
+      "-Igodot-cpp/gen/include",
+      "-Isrc",
+      "-o",
+      "src/register_types.os",
+      "src/register_types.cpp"
+    ],
+    "directory": "/mnt/sda1/data/godot-projects/multiplayer-roguelike",
+    "file": "/mnt/sda1/data/godot-projects/multiplayer-roguelike/src/register_types.cpp",
+    "output": "/mnt/sda1/data/godot-projects/multiplayer-roguelike/src/register_types.os"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++17",
+      "-fPIC",
+      "-Wwrite-strings",
+      "-m64",
+      "-march=x86-64",
+      "-O2",
+      "-fPIC",
+      "-DDEBUG_ENABLED",
+      "-DDEBUG_METHODS_ENABLED",
+      "-Igodot-cpp/gdextension",
+      "-Igodot-cpp/include",
+      "-Igodot-cpp/gen/include",
+      "-Isrc",
+      "-o",
+      "src/player_base.os",
+      "src/player_base.cpp"
+    ],
+    "directory": "/mnt/sda1/data/godot-projects/multiplayer-roguelike",
+    "file": "/mnt/sda1/data/godot-projects/multiplayer-roguelike/src/player_base.cpp",
+    "output": "/mnt/sda1/data/godot-projects/multiplayer-roguelike/src/player_base.os"
+  }
+
+]
