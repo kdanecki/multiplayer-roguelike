@@ -83,24 +83,39 @@ void Dungeon::generate() {
 
     TypedArray<Vector2i> centers; //= new Vector2i[rooms];
     centers.resize(rooms);                                  
-    int* sizes = new int[rooms];
+    int sizes[rooms]; //= new int[rooms];
 
+    centers[0] = Vector2i(0, 0);
+    sizes[0] = rng.randi_range(4, 5);
+    set_spiral(centers[0], sizes[0], 0);
 
-
-    for (int i = 0; i < rooms; i++) {
+    for (int i = 1; i < rooms; i++) {
         //UtilityFunctions::print(cells.size());
         Vector2i center = cells[rng.randi_range(0, cells.size()-1)];
         centers[i] = center;
         sizes[i] = rng.randi_range(1, fmin(4, size -1 - fmax(fmax(abs(center.x), abs(center.y)), abs(-center.x-center.y))));
         UtilityFunctions::print(centers[i], sizes[i]);
         set_spiral(centers[i], sizes[i], 0);
-        /*if (i > 0) {
-            path(centers[i], centers[i-1], 0);
-        }*/
     }
-    centers.sort();
-    for (int i = 1; i < centers.size(); i++) {
-        path(centers[i], centers[i-1], 0);
+    Dictionary connected;
+    for (int i = 0; i < rooms; i++) {
+        int min = 2000000;
+        int index = -1;
+        for (int j = 0; j < rooms; j++) {
+            int dis = distance(centers[i], centers[j]);
+            if (i != j && dis < min && !connected.has(j)) {
+                min = dis;
+                index = j;
+            }
+        }
+        if (index == -1) {
+            UtilityFunctions::print("coundn't find room to connect");
+        } else {
+            path(centers[i], centers[index], 0);
+            connected[i] = true;
+        }
+
+
     }
 
   //  path(Vector2i(0, 0), Vector2i(19, 0), 0);

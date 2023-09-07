@@ -36,7 +36,7 @@ func update_tile(pos : Vector2i, type :Vector2i):
 
 #var bla = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 #	if multiplayer.is_server():
 #		timer -= delta

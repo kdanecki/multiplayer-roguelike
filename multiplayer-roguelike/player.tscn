@@ -1,8 +1,43 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcymbxiyawafh"]
+[gd_scene load_steps=43 format=3 uid="uid://bcymbxiyawafh"]
 
-[ext_resource type="Texture2D" uid="uid://c8twxqq63ukkc" path="res://images/fighter.png" id="1_atm6l"]
 [ext_resource type="Script" path="res://Player.gd" id="1_og163"]
+[ext_resource type="Texture2D" uid="uid://b073duxeykccd" path="res://images/fighter/fighter-melee-1.png" id="3_hyhum"]
 [ext_resource type="Script" path="res://player_input.gd" id="3_u23yv"]
+[ext_resource type="Texture2D" uid="uid://c3nnuvvprmj01" path="res://images/fighter/fighter-idle-1.png" id="4_0djdk"]
+[ext_resource type="Texture2D" uid="uid://c8xabp5jbu2dn" path="res://images/fighter/fighter-melee-2.png" id="4_cbj4c"]
+[ext_resource type="Texture2D" uid="uid://b3yy7hud8agrd" path="res://images/fighter/fighter-idle-2.png" id="5_c21op"]
+[ext_resource type="Texture2D" uid="uid://dofaccpllbyfm" path="res://images/fighter/fighter-melee-3.png" id="5_km451"]
+[ext_resource type="Texture2D" uid="uid://dmj7wk3k1qj0v" path="res://images/fighter/fighter-melee-4.png" id="6_eoscu"]
+[ext_resource type="Texture2D" uid="uid://cq542hafla86n" path="res://images/fighter/fighter-idle-3.png" id="6_hm04o"]
+[ext_resource type="Texture2D" uid="uid://b07y2m2hq61yd" path="res://images/fighter/fighter-melee-1b.png" id="7_k68iw"]
+[ext_resource type="Texture2D" uid="uid://mschl6ryuc3b" path="res://images/fighter/fighter-idle-4.png" id="7_w0he3"]
+[ext_resource type="Texture2D" uid="uid://cyj8f2j7jocij" path="res://images/fighter/fighter-melee-2b.png" id="8_cf8qm"]
+[ext_resource type="Texture2D" uid="uid://bkg28hkswofno" path="res://images/fighter/fighter-idle-5.png" id="8_h80uv"]
+[ext_resource type="Texture2D" uid="uid://i64kndccrgt7" path="res://images/fighter/fighter-melee-3b.png" id="9_ixq53"]
+[ext_resource type="Texture2D" uid="uid://c3splp84rhcm5" path="res://images/fighter/fighter-idle-6.png" id="9_lq433"]
+[ext_resource type="Texture2D" uid="uid://bdxuc4xpldx2n" path="res://images/fighter/fighter-melee-4b.png" id="10_apavv"]
+[ext_resource type="Texture2D" uid="uid://dfgcc5qjhn7ok" path="res://images/fighter/fighter-idle-7.png" id="10_msfjo"]
+[ext_resource type="Texture2D" uid="uid://bs5vmo74w00ly" path="res://images/fighter/fighter-melee-5b.png" id="11_4nq4s"]
+[ext_resource type="Texture2D" uid="uid://bqo4t3kv1w3ik" path="res://images/fighter/fighter-idle-8.png" id="11_jen8e"]
+[ext_resource type="Texture2D" uid="uid://bg5xb7hd8vo50" path="res://images/archer-die1.png" id="12_ali4k"]
+[ext_resource type="Texture2D" uid="uid://cku1wbtwv33y7" path="res://images/fighter/fighter-idle-9.png" id="12_b5eam"]
+[ext_resource type="Texture2D" uid="uid://svvd7jmh663" path="res://images/archer-die2.png" id="13_45oq3"]
+[ext_resource type="Texture2D" uid="uid://dta56h4qybp4d" path="res://images/fighter/fighter-idle-10.png" id="13_t30ri"]
+[ext_resource type="Texture2D" uid="uid://bvhm8bej4x3tc" path="res://images/archer-die3.png" id="14_cbdu0"]
+[ext_resource type="Texture2D" uid="uid://c0o1ffjudu431" path="res://images/fighter/fighter-idle-11.png" id="14_qn1ly"]
+[ext_resource type="Texture2D" uid="uid://de7lsbybs0aq4" path="res://images/fighter/fighter-idle-12.png" id="15_1eis2"]
+[ext_resource type="Texture2D" uid="uid://b0mxv850p17sf" path="res://images/archer-die4.png" id="15_fqi25"]
+[ext_resource type="Texture2D" uid="uid://485heyd6y0xo" path="res://images/fighter/fighter.png" id="16_8556o"]
+[ext_resource type="Texture2D" uid="uid://ctmflgcvl0565" path="res://images/fighter/fighter-se-run1.png" id="16_tc6ww"]
+[ext_resource type="Texture2D" uid="uid://p5seavqvcau5" path="res://images/fighter/fighter-se-run2.png" id="17_b17e5"]
+[ext_resource type="Texture2D" uid="uid://mdyj8icmq5jd" path="res://images/fighter/fighter-se-run3.png" id="18_0b1cu"]
+[ext_resource type="Texture2D" uid="uid://dwayki2m8d6sp" path="res://images/fighter/fighter-se-run4.png" id="19_3l4hb"]
+[ext_resource type="Texture2D" uid="uid://dcvwad0xwyv2t" path="res://images/fighter/fighter-se-run5.png" id="20_jmayd"]
+[ext_resource type="Texture2D" uid="uid://daqbpxvuobf6f" path="res://images/fighter/fighter-se-run6.png" id="21_7ss1a"]
+[ext_resource type="Texture2D" uid="uid://dma0dgrakhaox" path="res://images/fighter/fighter-se-run7.png" id="22_pfxj5"]
+[ext_resource type="Texture2D" uid="uid://d01enrlau8btr" path="res://images/fighter/fighter-se-run8.png" id="23_e1au0"]
+[ext_resource type="Texture2D" uid="uid://ddwfiynnjweiq" path="res://images/fighter/fighter-se-run9.png" id="24_fmcoa"]
+[ext_resource type="Texture2D" uid="uid://crf17t3xrr532" path="res://images/fighter/fighter-se-run10.png" id="25_f2bk4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cpuni"]
 size = Vector2(30, 40)
@@ -18,12 +53,167 @@ properties/1/sync = true
 properties/1/watch = false
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nk8w1"]
-properties/0/path = NodePath("../InputSynchronizer:direction")
+properties/0/path = NodePath("../InputSynchronizer:move_direction")
 properties/0/spawn = true
 properties/0/sync = true
 properties/0/watch = false
+properties/1/path = NodePath("../InputSynchronizer:attack_direction")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath("../InputSynchronizer:action")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jv60r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hyhum")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cbj4c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_km451")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_eoscu")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_k68iw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cf8qm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ixq53")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_apavv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4nq4s")
+}],
+"loop": false,
+"name": &"attack2",
+"speed": 6.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_ali4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_45oq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_cbdu0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_fqi25")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0djdk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_c21op")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hm04o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w0he3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_h80uv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_lq433")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_msfjo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jen8e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_b5eam")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_t30ri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_qn1ly")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_1eis2")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_tc6ww")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_b17e5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_0b1cu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_3l4hb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_jmayd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_7ss1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_pfxj5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_e1au0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_fmcoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_f2bk4")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_8556o")
+}],
+"loop": true,
+"name": &"stay",
+"speed": 5.0
+}]
 
 [node name="PlayerBase" type="PlayerBase"]
+process_mode = 0
 position = Vector2(-95, 514.998)
 script = ExtResource("1_og163")
 
@@ -32,9 +222,6 @@ shape = SubResource("RectangleShape2D_cpuni")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_atm6l")
-
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_veoyy")
 
@@ -42,3 +229,11 @@ replication_config = SubResource("SceneReplicationConfig_veoyy")
 root_path = NodePath("../MultiplayerSynchronizer")
 replication_config = SubResource("SceneReplicationConfig_nk8w1")
 script = ExtResource("3_u23yv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+process_mode = 3
+sprite_frames = SubResource("SpriteFrames_jv60r")
+animation = &"run"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="attack"]

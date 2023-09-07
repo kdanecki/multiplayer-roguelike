@@ -10,13 +10,13 @@ script = ExtResource("1_i7ui7")
 [node name="Players" type="Node" parent="."]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://player.tscn")
+_spawnable_scenes = PackedStringArray("res://player.tscn", "res://goblin.tscn")
 spawn_path = NodePath("../Players")
 spawn_limit = 4
 
 [node name="Dungeon" type="Dungeon" parent="."]
 size = 50
 rooms = 30
+scale = Vector2(1.5, 1.5)
 tile_set = ExtResource("2_pvqd1")
-layer_0/name = "test1"
 script = ExtResource("3_2grn5")

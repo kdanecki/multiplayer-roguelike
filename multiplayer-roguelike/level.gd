@@ -22,10 +22,14 @@ func _exit_tree():
 	multiplayer.peer_disconnected.disconnect(del_player)
 
 func add_player(id: int):
-	var character = preload("res://player.tscn").instantiate()
+	var character
+	if id == 1:
+		character = preload("res://player.tscn").instantiate()
+	else:
+		character = preload("res://goblin.tscn").instantiate()
 	character.player = id
-	var pos = Vector2i(00, 00)#:= Vector2.from_angle(randf() * 2 * PI)
-	character.position = pos #* randf() * SPAWN_RANDOM
+	var pos := Vector2.from_angle(randf() * 2 * PI)
+	character.position = pos * randf() * SPAWN_RANDOM
 	character.name = str(id)
 	$Players.add_child(character, true)
 	
