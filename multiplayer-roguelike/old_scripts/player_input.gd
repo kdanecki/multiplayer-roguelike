@@ -2,7 +2,7 @@ extends MultiplayerSynchronizer
 
 @export var move_direction := Vector2()
 @export var attack_direction := Vector2()
-@export var action := PlayerBase.ACTION_NONE
+#@export var action := CharacterBase.ACTION_NONE
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,9 +34,9 @@ func _process(_delta):
 	if Input.is_action_pressed("move_left_down"):
 		#move_direction = PI - PI/6
 		move_direction += Vector2(-3, 2)
-	if Input.is_action_pressed("attack"):
-		action = PlayerBase.ACTION_ATTACK
-	else:
-		action = PlayerBase.ACTION_NONE
+#	if Input.is_action_pressed("attack"):
+	#	action = CharacterBase.ACTION_ATTACK
+#	else:
+#		action = CharacterBase.ACTION_NONE
 	
 	# print(move_direction)

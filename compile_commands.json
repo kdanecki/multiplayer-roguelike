@@ -71,8 +71,8 @@
       "src/player_base.cpp"
     ],
     "directory": "/mnt/sda1/data/godot-projects/multiplayer-roguelike",
-    "file": "/mnt/sda1/data/godot-projects/multiplayer-roguelike/src/player_base.cpp",
-    "output": "/mnt/sda1/data/godot-projects/multiplayer-roguelike/src/player_base.os"
+    "file": "/mnt/sda1/data/godot-projects/multiplayer-roguelike/src/character_base.cpp",
+    "output": "/mnt/sda1/data/godot-projects/multiplayer-roguelike/src/character_base.os"
   }
 
 ]

@@ -1,8 +1,6 @@
-[gd_scene load_steps=43 format=3 uid="uid://bcymbxiyawafh"]
+[gd_scene load_steps=41 format=3 uid="uid://bcymbxiyawafh"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_og163"]
 [ext_resource type="Texture2D" uid="uid://b073duxeykccd" path="res://images/fighter/fighter-melee-1.png" id="3_hyhum"]
-[ext_resource type="Script" path="res://player_input.gd" id="3_u23yv"]
 [ext_resource type="Texture2D" uid="uid://c3nnuvvprmj01" path="res://images/fighter/fighter-idle-1.png" id="4_0djdk"]
 [ext_resource type="Texture2D" uid="uid://c8xabp5jbu2dn" path="res://images/fighter/fighter-melee-2.png" id="4_cbj4c"]
 [ext_resource type="Texture2D" uid="uid://b3yy7hud8agrd" path="res://images/fighter/fighter-idle-2.png" id="5_c21op"]
@@ -43,28 +41,14 @@
 size = Vector2(30, 40)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_veoyy"]
-properties/0/path = NodePath(".:position")
+properties/0/path = NodePath(".:player")
 properties/0/spawn = true
 properties/0/sync = true
 properties/0/watch = false
-properties/1/path = NodePath(".:player")
+properties/1/path = NodePath(".:position")
 properties/1/spawn = true
 properties/1/sync = true
 properties/1/watch = false
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nk8w1"]
-properties/0/path = NodePath("../InputSynchronizer:move_direction")
-properties/0/spawn = true
-properties/0/sync = true
-properties/0/watch = false
-properties/1/path = NodePath("../InputSynchronizer:attack_direction")
-properties/1/spawn = true
-properties/1/sync = true
-properties/1/watch = false
-properties/2/path = NodePath("../InputSynchronizer:action")
-properties/2/spawn = true
-properties/2/sync = true
-properties/2/watch = false
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jv60r"]
 animations = [{
@@ -80,6 +64,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_eoscu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_eoscu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_8556o")
 }],
 "loop": false,
 "name": &"attack",
@@ -98,12 +88,15 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_apavv")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("11_4nq4s")
+}, {
+"duration": 2.0,
+"texture": ExtResource("16_8556o")
 }],
 "loop": false,
 "name": &"attack2",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [],
 "loop": true,
@@ -212,10 +205,21 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="PlayerBase" type="PlayerBase"]
-process_mode = 0
-position = Vector2(-95, 514.998)
-script = ExtResource("1_og163")
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_w386p"]
+properties/0/path = NodePath("InputSynchronizer:attack_direction")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath("InputSynchronizer:move_direction")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath("InputSynchronizer:action")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+
+[node name="CharacterBase" type="CharacterBase"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cpuni")
@@ -225,15 +229,10 @@ shape = SubResource("RectangleShape2D_cpuni")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_veoyy")
 
-[node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
-root_path = NodePath("../MultiplayerSynchronizer")
-replication_config = SubResource("SceneReplicationConfig_nk8w1")
-script = ExtResource("3_u23yv")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 process_mode = 3
 sprite_frames = SubResource("SpriteFrames_jv60r")
-animation = &"run"
+animation = &"attack2"
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="animation_finished"]
-[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="attack"]
+[node name="InputSynchronizer" type="PlayerInputSync" parent="."]
+replication_config = SubResource("SceneReplicationConfig_w386p")

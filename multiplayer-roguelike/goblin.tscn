@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://ds7msy3vmb4r7"]
 
-[ext_resource type="Script" path="res://goblin.gd" id="1_g4t1s"]
-[ext_resource type="Script" path="res://player_input.gd" id="2_xjlqc"]
+[ext_resource type="Script" path="res://old_scripts/goblin.gd" id="1_ug01n"]
+[ext_resource type="Script" path="res://old_scripts/player_input.gd" id="2_bcox0"]
 [ext_resource type="Texture2D" uid="uid://cjp7bnk0xnfvw" path="res://images/goblin/spearman-attack-ne1.png" id="3_2s43h"]
 [ext_resource type="Texture2D" uid="uid://c7rht6upspc8i" path="res://images/goblin/spearman-attack-ne2.png" id="4_45bd2"]
 [ext_resource type="Texture2D" uid="uid://dtcwsdtbpctgs" path="res://images/goblin/spearman-attack-se1.png" id="5_c32uj"]
@@ -25,11 +25,11 @@
 size = Vector2(30, 40)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_veoyy"]
-properties/0/path = NodePath(".:position")
+properties/0/path = NodePath(".:player")
 properties/0/spawn = true
 properties/0/sync = true
 properties/0/watch = false
-properties/1/path = NodePath(".:player")
+properties/1/path = NodePath(".:position")
 properties/1/spawn = true
 properties/1/sync = true
 properties/1/watch = false
@@ -143,10 +143,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="PlayerBase" type="PlayerBase"]
+[node name="CharacterBase" type="CharacterBase"]
 process_mode = 0
-position = Vector2(-95, 514.998)
-script = ExtResource("1_g4t1s")
+script = ExtResource("1_ug01n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cpuni")
@@ -159,7 +158,7 @@ replication_config = SubResource("SceneReplicationConfig_veoyy")
 [node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
 root_path = NodePath("../MultiplayerSynchronizer")
 replication_config = SubResource("SceneReplicationConfig_nk8w1")
-script = ExtResource("2_xjlqc")
+script = ExtResource("2_bcox0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 process_mode = 3

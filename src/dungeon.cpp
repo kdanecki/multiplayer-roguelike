@@ -2,6 +2,8 @@
 #include "godot_cpp/variant/variant.hpp"
 #include "godot_cpp/variant/string_name.hpp"
 #include "godot_cpp/variant/utility_functions.hpp"
+#include <godot_cpp/classes/multiplayer_api.hpp>
+#include <godot_cpp/classes/multiplayer_peer.hpp>
 
 using namespace godot;
 
@@ -23,6 +25,8 @@ void Dungeon::_bind_methods() {
     ClassDB::add_property("Dungeon", PropertyInfo(Variant::INT, "rooms"), "set_rooms", "get_rooms");
 
     ClassDB::bind_method(D_METHOD("generate"), &Dungeon::generate);
+    ClassDB::bind_method(D_METHOD("refresh"), &Dungeon::refresh);
+    ClassDB::bind_method(D_METHOD("refresh_peer", "id"), &Dungeon::refresh_peer);
 
     BIND_ENUM_CONSTANT(TILE_GRASS);
     BIND_ENUM_CONSTANT(TILE_YELLOW_GRASS);
@@ -38,11 +42,14 @@ Dungeon::Dungeon() {
     //UtilityFunctions::print(StringName("test"));
 //    dungeon.resize(100);
     size = 20;
-    rng.randomize();
+    rng = memnew(RandomNumberGenerator);
+    rng->randomize();
 }
 
 Dungeon::~Dungeon() {
+    memdelete(rng);
 }
+
 
 void Dungeon::set_ring(Vector2i center, int radius, int type) {
     Vector2i hex = center + (directions[4] * radius);
@@ -86,15 +93,15 @@ void Dungeon::generate() {
     int sizes[rooms]; //= new int[rooms];
 
     centers[0] = Vector2i(0, 0);
-    sizes[0] = rng.randi_range(4, 5);
+    sizes[0] = rng->randi_range(4, 5);
     set_spiral(centers[0], sizes[0], 0);
 
     for (int i = 1; i < rooms; i++) {
         //UtilityFunctions::print(cells.size());
-        Vector2i center = cells[rng.randi_range(0, cells.size()-1)];
+        Vector2i center = cells[rng->randi_range(0, cells.size()-1)];
         centers[i] = center;
-        sizes[i] = rng.randi_range(1, fmin(4, size -1 - fmax(fmax(abs(center.x), abs(center.y)), abs(-center.x-center.y))));
-        UtilityFunctions::print(centers[i], sizes[i]);
+        sizes[i] = rng->randi_range(1, fmin(4, size -1 - fmax(fmax(abs(center.x), abs(center.y)), abs(-center.x-center.y))));
+//        UtilityFunctions::print(centers[i], sizes[i]);
         set_spiral(centers[i], sizes[i], 0);
     }
     Dictionary connected;
@@ -109,7 +116,7 @@ void Dungeon::generate() {
             }
         }
         if (index == -1) {
-            UtilityFunctions::print("coundn't find room to connect");
+//            UtilityFunctions::print("coundn't find room to connect");
         } else {
             path(centers[i], centers[index], 0);
             connected[i] = true;
@@ -137,6 +144,38 @@ void Dungeon::generate() {
     //for (int i = 0; i < 10; i++) {
     //    dungeon[Vector2i(rng.randi_range(-10, 9), rng.randi_range(-10, 9))] = TILE_HOUSE;
     //}
+}
+
+void Dungeon::refresh(Dictionary p_dungeon) {
+    UtilityFunctions::print("refresh");
+    dungeon = p_dungeon;
+    Array test = dungeon.keys();
+    for (int i = 0; i < test.size(); i++) {
+        set_cell(0, test[i], 0, Vector2i(dungeon[test[i]], 0));
+    }
+}
+
+void Dungeon::refresh_peer(int id) {
+    rpc_id(id, "refresh", dungeon);
+}
+
+void Dungeon::_notification(int p_what) {
+    if (p_what == NOTIFICATION_READY) {
+        Dictionary opts;
+        opts["rpc_mode"] = MultiplayerAPI::RPC_MODE_AUTHORITY;
+        opts["transfer_mode"] = MultiplayerPeer::TRANSFER_MODE_RELIABLE;
+        opts["call_local"] = false;
+        opts["channel"] = 0;
+        rpc_config("refresh", opts);
+    }
+}
+
+void Dungeon::_ready() {
+    if (get_multiplayer()->is_server()) {
+        generate();
+        get_multiplayer()->connect("peer_connected", Callable(this, "refresh_peer"));
+        refresh(dungeon);
+    }
 }
 
 int Dungeon::get_rooms() {

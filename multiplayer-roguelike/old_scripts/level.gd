@@ -23,10 +23,10 @@ func _exit_tree():
 
 func add_player(id: int):
 	var character
-	if id == 1:
-		character = preload("res://player.tscn").instantiate()
-	else:
-		character = preload("res://goblin.tscn").instantiate()
+	#if id == 1:
+	character = preload("res://player.tscn").instantiate()
+	#else:
+	#	character = preload("res://goblin.tscn").instantiate()
 	character.player = id
 	var pos := Vector2.from_angle(randf() * 2 * PI)
 	character.position = pos * randf() * SPAWN_RANDOM

@@ -1,9 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://sifv6lbd12lu"]
+[gd_scene format=3 uid="uid://sifv6lbd12lu"]
 
-[ext_resource type="Script" path="res://multiplayer.gd" id="1_e5262"]
-
-[node name="Master" type="Node"]
-script = ExtResource("1_e5262")
+[node name="Master" type="MasterNode"]
 
 [node name="Level" type="Node" parent="."]
 
@@ -40,6 +37,3 @@ text = "Join
 layout_mode = 2
 text = "127.0.0.1"
 expand_to_text_length = true
-
-[connection signal="button_down" from="UI/VBoxContainer/HBoxContainer/Button" to="." method="_on_host_pressed"]
-[connection signal="button_down" from="UI/VBoxContainer/HBoxContainer/Button2" to="." method="_on_connect_pressed"]

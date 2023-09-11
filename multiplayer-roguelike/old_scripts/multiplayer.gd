@@ -5,7 +5,7 @@ const PORT = 4433
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().paused = true
-	multiplayer.server_relay = false
+	# multiplayer.server_relay = false
 	
 	if DisplayServer.get_name() == "headless":
 		print("Automatically starting dedicated server")

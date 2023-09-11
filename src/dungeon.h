@@ -26,7 +26,7 @@ public:
     static const Vector2i directions[]; 
 
 private:
-    RandomNumberGenerator rng;
+    RandomNumberGenerator* rng;
     Dictionary dungeon;
     int size;
     int rooms;
@@ -38,6 +38,8 @@ private:
 public:
     void generate();
 
+    void refresh(Dictionary p_dungeon);
+    void refresh_peer(int id);
 
     int get_rooms();
     void set_rooms(int p_rooms);
@@ -45,6 +47,9 @@ public:
     void set_dungeon(Dictionary p_dungeon);
     int get_size();
     void set_size(TileType p_size);
+
+    void _notification(int p_what);
+    void _ready() override;
 
     Dungeon();
     ~Dungeon();

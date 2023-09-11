@@ -1,8 +1,11 @@
 #include "register_types.h"
 
 #include "gdexample.h"
-#include "player_base.h"
+#include "character_base.h"
 #include "dungeon.h"
+#include "player_input_sync.h"
+#include "master_node.h"
+#include "level_node.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -17,8 +20,11 @@ void initialize_example_module(ModuleInitializationLevel p_level) {
     }
 
      ClassDB::register_class<GDExample>();
-     ClassDB::register_class<PlayerBase>();
+     ClassDB::register_class<PlayerInputSync>();
+     ClassDB::register_class<CharacterBase>();
      ClassDB::register_class<Dungeon>();
+     ClassDB::register_class<MasterNode>();
+     ClassDB::register_class<LevelNode>();
 }
 
 void uninitialize_example_module(ModuleInitializationLevel p_level) {

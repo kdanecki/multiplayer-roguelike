@@ -1,3 +1,4 @@
 .cache/**
 .sconsign.dblite
 multiplayer-roguelike/bin/**
+*.os
