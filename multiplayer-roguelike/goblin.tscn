@@ -164,6 +164,3 @@ script = ExtResource("2_bcox0")
 process_mode = 3
 sprite_frames = SubResource("SpriteFrames_jv60r")
 animation = &"attack"
-
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="animation_finished"]
-[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="attack"]

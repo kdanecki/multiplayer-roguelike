@@ -1,5 +1,6 @@
-[gd_scene load_steps=41 format=3 uid="uid://bcymbxiyawafh"]
+[gd_scene load_steps=43 format=3 uid="uid://bcymbxiyawafh"]
 
+[ext_resource type="Script" path="res://test.gd" id="1_l88vw"]
 [ext_resource type="Texture2D" uid="uid://b073duxeykccd" path="res://images/fighter/fighter-melee-1.png" id="3_hyhum"]
 [ext_resource type="Texture2D" uid="uid://c3nnuvvprmj01" path="res://images/fighter/fighter-idle-1.png" id="4_0djdk"]
 [ext_resource type="Texture2D" uid="uid://c8xabp5jbu2dn" path="res://images/fighter/fighter-melee-2.png" id="4_cbj4c"]
@@ -36,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://d01enrlau8btr" path="res://images/fighter/fighter-se-run8.png" id="23_e1au0"]
 [ext_resource type="Texture2D" uid="uid://ddwfiynnjweiq" path="res://images/fighter/fighter-se-run9.png" id="24_fmcoa"]
 [ext_resource type="Texture2D" uid="uid://crf17t3xrr532" path="res://images/fighter/fighter-se-run10.png" id="25_f2bk4"]
+[ext_resource type="Texture2D" uid="uid://wigh35cee1a3" path="res://images/2d_lights_and_shadows_neutral_point_light.webp" id="38_xf72m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cpuni"]
 size = Vector2(30, 40)
@@ -49,6 +51,22 @@ properties/1/path = NodePath(".:position")
 properties/1/spawn = true
 properties/1/sync = true
 properties/1/watch = false
+properties/2/path = NodePath("AnimatedSprite2D:animation")
+properties/2/spawn = true
+properties/2/sync = false
+properties/2/watch = true
+properties/3/path = NodePath("AnimatedSprite2D:frame")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
+properties/4/path = NodePath("AnimatedSprite2D:position")
+properties/4/spawn = true
+properties/4/sync = true
+properties/4/watch = false
+properties/5/path = NodePath("AnimatedSprite2D:flip_h")
+properties/5/spawn = true
+properties/5/sync = false
+properties/5/watch = true
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jv60r"]
 animations = [{
@@ -220,6 +238,7 @@ properties/2/sync = true
 properties/2/watch = false
 
 [node name="CharacterBase" type="CharacterBase"]
+motion_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cpuni")
@@ -228,6 +247,7 @@ shape = SubResource("RectangleShape2D_cpuni")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_veoyy")
+script = ExtResource("1_l88vw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 process_mode = 3
@@ -236,3 +256,10 @@ animation = &"attack2"
 
 [node name="InputSynchronizer" type="PlayerInputSync" parent="."]
 replication_config = SubResource("SceneReplicationConfig_w386p")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+process_mode = 3
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("38_xf72m")
+texture_scale = 5.0

@@ -4,6 +4,8 @@
 #include "godot_cpp/variant/utility_functions.hpp"
 #include <godot_cpp/classes/multiplayer_api.hpp>
 #include <godot_cpp/classes/multiplayer_peer.hpp>
+#include <godot_cpp/classes/tile_set.hpp>
+#include <godot_cpp/classes/sprite2d.hpp>
 
 using namespace godot;
 
@@ -36,6 +38,12 @@ void Dungeon::_bind_methods() {
 }
 
 Dungeon::Dungeon() {
+    add_layer(1);
+    add_layer(2);
+//    add_layer(3);
+  ///  add_layer(4);
+  //  add_layer(5);
+   // add_layer(6);
     //add_layer(5);
     //add_layer(2);
     //dungeon.set_typed(Variant::INT, StringName(), Variant());
@@ -44,6 +52,7 @@ Dungeon::Dungeon() {
     size = 20;
     rng = memnew(RandomNumberGenerator);
     rng->randomize();
+    clear();
 }
 
 Dungeon::~Dungeon() {
@@ -147,11 +156,25 @@ void Dungeon::generate() {
 }
 
 void Dungeon::refresh(Dictionary p_dungeon) {
-    UtilityFunctions::print("refresh");
+//    UtilityFunctions::print("refresh");
+    Sprite2D *sprite = get_node<Sprite2D>("Sprite2D");
     dungeon = p_dungeon;
     Array test = dungeon.keys();
     for (int i = 0; i < test.size(); i++) {
+        Vector2i loc = test[i];
         set_cell(0, test[i], 0, Vector2i(dungeon[test[i]], 0));
+        int type = 0;
+        if ((int)dungeon[test[i]] == 1) {
+            type += 1;
+        }
+        if ((int)dungeon[loc + directions[0]] == 1) {
+            type += 2;
+        }
+        if ((int)dungeon[loc + directions[1]] == 1) {
+            type += 4;
+        }
+        //set_cell(1, loc, 0, Vector2i(type, 1));
+        
     }
 }
 

@@ -33,8 +33,8 @@ void MasterNode::start_game() {
     get_tree()->set_pause(false);
 
     if (get_multiplayer()->is_server()) {
-        ResourceLoader loader;
-        Ref<PackedScene> loaded = loader.load("res://test_world.tscn");
+        ResourceLoader* loader = ResourceLoader::get_singleton();
+        Ref<PackedScene> loaded = loader->load("res://test_world.tscn");
         call_deferred("change_level", loaded);
 
     }

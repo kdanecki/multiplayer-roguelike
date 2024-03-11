@@ -41,16 +41,16 @@ void LevelNode::_exit_tree() {
 }
 
 void LevelNode::add_player(int id) {
-    ResourceLoader loader;
-    Ref<PackedScene> loaded = loader.load("res://player.tscn");
+    Ref<PackedScene> loaded = ResourceLoader::get_singleton()->load("res://player.tscn");
     CharacterBase* character = Object::cast_to<CharacterBase>(loaded->instantiate());
     character->set_player(id);
-    RandomNumberGenerator rng;
-    Vector2 pos = Vector2::from_angle(rng.randf() * 2 * Math_PI);
-    character->set_position(pos*rng.randf_range(1, 50));
+    Ref<RandomNumberGenerator> rng = memnew(RandomNumberGenerator);
+    Vector2 pos = Vector2::from_angle(rng->randf() * 2 * Math_PI);
+    character->set_position(pos*rng->randf_range(1, 50));
     character->set_name(String::num_int64(id));
     Node* players = get_node<Node>("Players");
     if (players) players->add_child(character, true);
+    
     
 }
 
