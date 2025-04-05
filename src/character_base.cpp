@@ -11,6 +11,7 @@
 #include <godot_cpp/classes/random_number_generator.hpp>
 #include <godot_cpp/classes/property_tweener.hpp>
 #include <godot_cpp/variant/callable.hpp>
+#include <godot_cpp/classes/point_light2d.hpp>
 
 using namespace godot;
 
@@ -140,8 +141,11 @@ void CharacterBase::_ready() {
         sprite->connect("frame_changed", Callable(this, "attack"));
     }
 
-    if (player == get_multiplayer()->get_unique_id())
+    if (player == get_multiplayer()->get_unique_id()) {
         get_node<Camera2D>("Camera2D")->make_current();
+    } else {
+        get_node<PointLight2D>("PointLight2D")->set_enabled(false);
+    }
 }
 
 void CharacterBase::_physics_process(double p_delta) {
@@ -163,6 +167,5 @@ void CharacterBase::_process(double p_delta) {
     if (get_multiplayer()->is_server()) {
         handle_animations();
     }
-    UtilityFunctions::print("bla bla");
 }
 

@@ -1,6 +1,5 @@
-[gd_scene load_steps=43 format=3 uid="uid://bcymbxiyawafh"]
+[gd_scene load_steps=42 format=3 uid="uid://bcymbxiyawafh"]
 
-[ext_resource type="Script" path="res://test.gd" id="1_l88vw"]
 [ext_resource type="Texture2D" uid="uid://b073duxeykccd" path="res://images/fighter/fighter-melee-1.png" id="3_hyhum"]
 [ext_resource type="Texture2D" uid="uid://c3nnuvvprmj01" path="res://images/fighter/fighter-idle-1.png" id="4_0djdk"]
 [ext_resource type="Texture2D" uid="uid://c8xabp5jbu2dn" path="res://images/fighter/fighter-melee-2.png" id="4_cbj4c"]
@@ -247,12 +246,11 @@ shape = SubResource("RectangleShape2D_cpuni")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_veoyy")
-script = ExtResource("1_l88vw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 process_mode = 3
 sprite_frames = SubResource("SpriteFrames_jv60r")
-animation = &"attack2"
+animation = &"attack"
 
 [node name="InputSynchronizer" type="PlayerInputSync" parent="."]
 replication_config = SubResource("SceneReplicationConfig_w386p")

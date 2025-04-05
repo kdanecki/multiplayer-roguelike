@@ -1,7 +1,5 @@
-[gd_scene load_steps=25 format=3 uid="uid://ds7msy3vmb4r7"]
+[gd_scene load_steps=24 format=3 uid="uid://ds7msy3vmb4r7"]
 
-[ext_resource type="Script" path="res://old_scripts/goblin.gd" id="1_ug01n"]
-[ext_resource type="Script" path="res://old_scripts/player_input.gd" id="2_bcox0"]
 [ext_resource type="Texture2D" uid="uid://cjp7bnk0xnfvw" path="res://images/goblin/spearman-attack-ne1.png" id="3_2s43h"]
 [ext_resource type="Texture2D" uid="uid://c7rht6upspc8i" path="res://images/goblin/spearman-attack-ne2.png" id="4_45bd2"]
 [ext_resource type="Texture2D" uid="uid://dtcwsdtbpctgs" path="res://images/goblin/spearman-attack-se1.png" id="5_c32uj"]
@@ -19,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://6207eldglig0" path="res://images/goblin/spearman-se-run6.png" id="17_eht3a"]
 [ext_resource type="Texture2D" uid="uid://fywf3i5euukn" path="res://images/goblin/spearman-se-run7.png" id="18_fidqp"]
 [ext_resource type="Texture2D" uid="uid://dvqqvog6n00av" path="res://images/goblin/spearman-se-run8.png" id="19_bw2cm"]
+[ext_resource type="Texture2D" uid="uid://wigh35cee1a3" path="res://images/2d_lights_and_shadows_neutral_point_light.webp" id="19_qhxlc"]
 [ext_resource type="Texture2D" uid="uid://bk5gwbwup1qqk" path="res://images/goblin/spearman-se-run9.png" id="20_4eogw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cpuni"]
@@ -33,20 +32,22 @@ properties/1/path = NodePath(".:position")
 properties/1/spawn = true
 properties/1/sync = true
 properties/1/watch = false
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nk8w1"]
-properties/0/path = NodePath("../InputSynchronizer:move_direction")
-properties/0/spawn = true
-properties/0/sync = true
-properties/0/watch = false
-properties/1/path = NodePath("../InputSynchronizer:attack_direction")
-properties/1/spawn = true
-properties/1/sync = true
-properties/1/watch = false
-properties/2/path = NodePath("../InputSynchronizer:action")
+properties/2/path = NodePath("AnimatedSprite2D:animation")
 properties/2/spawn = true
-properties/2/sync = true
-properties/2/watch = false
+properties/2/sync = false
+properties/2/watch = true
+properties/3/path = NodePath("AnimatedSprite2D:frame")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
+properties/4/path = NodePath("AnimatedSprite2D:position")
+properties/4/spawn = true
+properties/4/sync = true
+properties/4/watch = false
+properties/5/path = NodePath("AnimatedSprite2D:flip_h")
+properties/5/spawn = true
+properties/5/sync = false
+properties/5/watch = true
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jv60r"]
 animations = [{
@@ -55,27 +56,57 @@ animations = [{
 "texture": ExtResource("3_2s43h")
 }, {
 "duration": 1.0,
+"texture": ExtResource("3_2s43h")
+}, {
+"duration": 1.0,
 "texture": ExtResource("4_45bd2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_45bd2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_45bd2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2s43h")
 }],
 "loop": false,
 "name": &"attack",
-"speed": 4.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("5_c32uj")
 }, {
 "duration": 1.0,
+"texture": ExtResource("5_c32uj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_c32uj")
+}, {
+"duration": 1.0,
 "texture": ExtResource("6_38vsb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_38vsb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_38vsb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_c32uj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_c32uj")
 }],
 "loop": false,
 "name": &"attack2",
-"speed": 4.0
+"speed": 8.0
 }, {
 "frames": [],
 "loop": true,
 "name": &"dead",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -143,9 +174,22 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nk8w1"]
+properties/0/path = NodePath("../InputSynchronizer:move_direction")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath("../InputSynchronizer:attack_direction")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath("../InputSynchronizer:action")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+
 [node name="CharacterBase" type="CharacterBase"]
-process_mode = 0
-script = ExtResource("1_ug01n")
+motion_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cpuni")
@@ -155,12 +199,19 @@ shape = SubResource("RectangleShape2D_cpuni")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_veoyy")
 
-[node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
-root_path = NodePath("../MultiplayerSynchronizer")
-replication_config = SubResource("SceneReplicationConfig_nk8w1")
-script = ExtResource("2_bcox0")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 process_mode = 3
 sprite_frames = SubResource("SpriteFrames_jv60r")
 animation = &"attack"
+
+[node name="InputSynchronizer" type="PlayerInputSync" parent="."]
+attack_direction = Vector2(470.143, 185.661)
+root_path = NodePath("../MultiplayerSynchronizer")
+replication_config = SubResource("SceneReplicationConfig_nk8w1")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+process_mode = 3
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("19_qhxlc")
+texture_scale = 5.0
